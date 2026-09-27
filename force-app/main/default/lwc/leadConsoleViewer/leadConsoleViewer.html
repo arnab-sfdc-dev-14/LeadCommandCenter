@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title={cardTitle}>
+        <div class="section1">
+                <div class="slds-box slds-p-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                    <lightning-layout>
+                        <lightning-layout-item padding="around-small">
+                            <lightning-input label="Rating" name="rating" type="text" placeholder="Type Hot,Cold or Warm" value={selectedRatingValue} 
+                                onchange={handleRatingFilterValue}></lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="around-small">
+                            <lightning-combobox name="status" 
+                                    label="Status" 
+                                    value={selectedStatusValue} 
+                                    options={statusOptions} 
+                                    onchange={handleStatusChange} >
+                            </lightning-combobox> 
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="around-small">
+                            <lightning-button label="Reset Filters" name="reset" type="submit" variant="base" onclick={handleResetData}></lightning-button>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="around-small">
+                            <lightning-button label="Refresh" name="refresh" type="submit" variant="base" onclick={handleRefreshData}></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+        </div>
+        <template if:true={showData}>
+            <lightning-datatable key-field="Id"
+                                 columns={COLUMNS}
+                                 data={tableData}
+                                 onrowaction={handleRowAction}
+                                 hide-checkbox-column>
+            </lightning-datatable>
+                                 
+        </template>
+    </lightning-card>
+</template>
